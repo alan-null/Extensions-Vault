@@ -23,7 +23,7 @@ Install-Tooling
 Get-ChildItem -Path $dbPath -Directory | ForEach-Object {
     $extensionFolder = $_
 
-    $latestCrx = Get-ChildItem -Path $extensionFolder.FullName -Filter *.crx | Sort-Object { Get-Version $_ } -Descending | Select-Object -First 1
+    $latestCrx = Get-ChildItem -Path $extensionFolder.FullName  | ? { $_.Extension -in '.crx', '.zip' } | Sort-Object { Get-Version $_ } -Descending | Select-Object -First 1
     if ($latestCrx) {
         Write-Host "Extracting $($latestCrx.Name)" -ForegroundColor Green
         $tempExtractFolder = "$tempPath\$($latestCrx.BaseName)"

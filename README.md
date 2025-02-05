@@ -46,7 +46,13 @@ Others are based on potential risks I want to avoid:
 ## Project Structure
 
 ###  📁db
-Contains approved extensions
+Contains approved extensions. There are two types of files:
+
+**`crx`** - contains native Chrome extension package. Unmodified store package with correct signatures inside.
+
+**`zip`** - contains updated extension build based on source code or `crx`.
+
+  Additional information can be found in `README.md` files in each catalog.
 
 ### 📁out
 Initially empty. Running `out.ps1` will unpack the most recent version of the extensions into this folder.
