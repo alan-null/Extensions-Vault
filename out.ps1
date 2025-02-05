@@ -42,6 +42,7 @@ Get-ChildItem -Path $dbPath -Directory | ForEach-Object {
         }
 
         write-host "`tMoving files to $outputFolder" -ForegroundColor DarkGray
+        mkdir $outputFolder | Out-Null
         Move-Item -Path "$tempExtractFolder\*" -Destination $outputFolder
         Remove-Item -Path $tempExtractFolder -Recurse -Force
     }
