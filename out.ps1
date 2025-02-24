@@ -6,7 +6,18 @@ $toolsPath = "$PSScriptRoot\tools"
 $toolName = "7-Zip.CommandLine"
 
 function Get-Version ($file) {
-    [version] ($file.BaseName -replace '.*?(\d+\.\d+\.\d+).*', '$1')
+    [string]$name = $file.BaseName
+
+    if ($name -match '.*?(\d+)[._](\d+)[._](\d+).*') {
+        $major = $matches[1]
+        $minor = $matches[2]
+        $patch = $matches[3]
+
+        [System.Version]::new($major, $minor, $patch)
+    }
+    else {
+        Write-Error "No valid version found in the filename."
+    }
 }
 
 function Install-Tooling {
