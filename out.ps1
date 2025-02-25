@@ -42,6 +42,8 @@ Get-ChildItem -Path $dbPath -Directory | ForEach-Object {
 
         $manifest = Get-Content "$tempExtractFolder\manifest.json" | ConvertFrom-Json
         $extensionName = $manifest.name
+        $manifest.name = "🛡️ $extensionName"
+        $manifest | ConvertTo-Json -Depth 10 | Set-Content "$tempExtractFolder\manifest.json"
 
         Write-Host "`tDeploying $($latestCrx.Name) as" -ForegroundColor DarkGray -NoNewline
         Write-Host "'$extensionName'" -ForegroundColor Yellow
